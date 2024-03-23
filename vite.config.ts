@@ -1,10 +1,14 @@
-import MillionLint from '@million/lint';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
+import MillionLint from "@million/lint";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import tailwindcss from "@tailwindcss/vite";
+import path from "node:path";
 
-// https://vitejs.dev/config/
-var plugins = [react()];
-plugins.unshift(MillionLint.vite())
 export default defineConfig({
-  plugins: plugins
+  plugins: [react(), tailwindcss(), MillionLint.vite()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 });
